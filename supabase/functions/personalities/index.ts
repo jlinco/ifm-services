@@ -4,6 +4,7 @@
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
 import { SupabaseClient, createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { corsHeaders } from '../_shared/cors.ts';
+import { Database } from '../../../ifmtypes.gen';
 
 // TO DO: generate types for supabase to use typescript features
 
@@ -35,7 +36,7 @@ serve(async(req) => {
   const { url, method } = req
 
   try {
-    const supabase = createClient(
+    const supabase = createClient<Database>(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_ANON_KEY') ?? ''
     )
