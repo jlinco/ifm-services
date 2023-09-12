@@ -19,7 +19,7 @@ async function getAllPersonalities(client: SupabaseClient) {
   })
 }
 
-// update personality with ID
+// update personality with id
 // TODO: add auth guard to prevent unwanted changes
 async function updatePersonality(id: string, client: SupabaseClient, personality: any) {
   const { error } = await client.from('personalities').update(personality).eq('personality_id', id)

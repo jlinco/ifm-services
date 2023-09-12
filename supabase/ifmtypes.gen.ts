@@ -75,27 +75,24 @@ export interface Database {
       }
       profiles: {
         Row: {
-          avatar_url: string | null
           educational_level: string | null
-          firstname: string | null
+          first_name: string | null
           id: string
-          lastname: string | null
+          last_name: string | null
           membership: string | null
         }
         Insert: {
-          avatar_url?: string | null
           educational_level?: string | null
-          firstname?: string | null
+          first_name?: string | null
           id: string
-          lastname?: string | null
+          last_name?: string | null
           membership?: string | null
         }
         Update: {
-          avatar_url?: string | null
           educational_level?: string | null
-          firstname?: string | null
+          first_name?: string | null
           id?: string
-          lastname?: string | null
+          last_name?: string | null
           membership?: string | null
         }
         Relationships: [

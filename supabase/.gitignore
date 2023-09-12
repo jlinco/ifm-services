@@ -5,3 +5,4 @@
 .env.local
 .vscode/settings.json
 ifm-services.code-workspace
+.DS_Store
