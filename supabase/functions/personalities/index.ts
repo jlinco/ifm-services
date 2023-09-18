@@ -1,10 +1,10 @@
 // Follow this setup guide to integrate the Deno language server with your editor:
 // https://deno.land/manual/getting_started/setup_your_environment
 // This enables autocomplete, go to definition, etc.
-import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
-import { SupabaseClient, createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { serve } from 'std/server'
+import { SupabaseClient, createClient } from  "@supabase/supabase-js";
 import { corsHeaders } from '../_shared/cors.ts';
-import { Database } from '../../../ifmtypes.gen';
+import { Database } from '../../ifmtypes.gen.ts';
 
 // TO DO: generate types for supabase to use typescript features
 
