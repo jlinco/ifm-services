@@ -1,4 +1,4 @@
-CREATE TABLE public.personalities
+CREATE TABLE IF NOT EXISTS public.personalities
 (
     personality_id uuid NOT NULL DEFAULT uuid_generate_v4(),
     title text COLLATE pg_catalog."default" NOT NULL,
@@ -25,7 +25,7 @@ GRANT ALL ON TABLE public.personalities TO postgres;
 
 GRANT ALL ON TABLE public.personalities TO service_role;
 
-CREATE TABLE public.profiles
+CREATE TABLE IF NOT EXISTS public.profiles
 (
     id uuid NOT NULL,
     membership text COLLATE pg_catalog."default",
