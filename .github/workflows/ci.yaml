@@ -25,7 +25,7 @@ jobs:
 
       - name: Verify generated types are checked in
         run: |
-          supabase gen types typescript --local > ifmtypes.gen.ts
+          supabase gen types typescript --local --schema public --schema auth > ifmtypes.gen.ts
           if ! git diff --ignore-space-at-eol --exit-code --quiet ifmtypes.gen.ts; then
             echo "Detected uncommitted changes after build. See status below:"
             git diff
