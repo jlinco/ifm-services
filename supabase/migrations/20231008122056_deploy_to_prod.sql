@@ -66,29 +66,3 @@ ALTER TABLE IF EXISTS public.personalities
 
 ALTER TABLE IF EXISTS public.profiles
     ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "Enable read access for all users"
-    ON public.personalities
-    AS PERMISSIVE
-    FOR SELECT
-    TO public
-    USING (true);
-
-CREATE POLICY "User can view their own profile"
-    ON public.profiles
-    AS PERMISSIVE
-    FOR SELECT
-    TO public
-    USING ((auth.uid() = id));
-CREATE POLICY "Users can insert their own profile"
-    ON public.profiles
-    AS PERMISSIVE
-    FOR INSERT
-    TO public
-    WITH CHECK ((auth.uid() = id));
-CREATE POLICY "Users can update their own profile"
-    ON public.profiles
-    AS PERMISSIVE
-    FOR UPDATE
-    TO public
-    USING ((auth.uid() = id));
