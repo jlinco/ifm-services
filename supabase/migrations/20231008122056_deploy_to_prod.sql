@@ -59,17 +59,7 @@ GRANT ALL ON TABLE public.profiles TO postgres;
 
 GRANT ALL ON TABLE public.profiles TO service_role;
 -- insert row into public.profiles on account creation
-CREATE FUNCTION public.handle_new_user()
-returns trigger
-language plpgsql
-security definer set search_path = public
-as $$
-begin
-  insert into public.profiles (id)
-  values (new.id);
-  return new;
-end;
-$$;
+
 
 ALTER TABLE IF EXISTS public.personalities
     ENABLE ROW LEVEL SECURITY;
@@ -102,8 +92,3 @@ CREATE POLICY "Users can update their own profile"
     FOR UPDATE
     TO public
     USING ((auth.uid() = id));
-
--- trigger the function every time a user is created
-CREATE TRIGGER on_auth_user_created
-  after insert on auth.users
-  for each row execute procedure public.handle_new_user();
