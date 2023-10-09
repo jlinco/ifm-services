@@ -20,7 +20,7 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.personalities
     OWNER to postgres;
 
-CREATE TABLE public.profiles
+CREATE TABLE IF NOT EXISTS public.profiles
 (
     id uuid NOT NULL,
     first_name text COLLATE pg_catalog."default",
