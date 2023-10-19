@@ -24,7 +24,6 @@ jobs:
         with:
           version: latest
 
-      - run: |
-          supabase link --project-ref $SUPABASE_PROJECT_ID -p $SUPABASE_DB_PASSWORD --debug
-          supabase db push --debug
-          supabase functions deploy personalities
+      - run: supabase link --project-ref $SUPABASE_PROJECT_ID
+      - run: supabase db push
+      - run: supabase functions deploy personalities
