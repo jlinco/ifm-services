@@ -327,6 +327,7 @@ export interface Database {
       saml_relay_states: {
         Row: {
           created_at: string | null
+          flow_state_id: string | null
           for_email: string | null
           from_ip_address: unknown | null
           id: string
@@ -337,6 +338,7 @@ export interface Database {
         }
         Insert: {
           created_at?: string | null
+          flow_state_id?: string | null
           for_email?: string | null
           from_ip_address?: unknown | null
           id: string
@@ -347,6 +349,7 @@ export interface Database {
         }
         Update: {
           created_at?: string | null
+          flow_state_id?: string | null
           for_email?: string | null
           from_ip_address?: unknown | null
           id?: string
@@ -356,6 +359,12 @@ export interface Database {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "saml_relay_states_flow_state_id_fkey"
+            columns: ["flow_state_id"]
+            referencedRelation: "flow_state"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "saml_relay_states_sso_provider_id_fkey"
             columns: ["sso_provider_id"]
@@ -610,6 +619,33 @@ export interface Database {
   }
   public: {
     Tables: {
+      menus: {
+        Row: {
+          hassubmenu: boolean | null
+          icon: string | null
+          menu_id: string
+          menu_path: string | null
+          slug: string
+          title: string
+        }
+        Insert: {
+          hassubmenu?: boolean | null
+          icon?: string | null
+          menu_id?: string
+          menu_path?: string | null
+          slug: string
+          title: string
+        }
+        Update: {
+          hassubmenu?: boolean | null
+          icon?: string | null
+          menu_id?: string
+          menu_path?: string | null
+          slug?: string
+          title?: string
+        }
+        Relationships: []
+      }
       personalities: {
         Row: {
           created_at: string | null
@@ -677,6 +713,40 @@ export interface Database {
             columns: ["id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
+          }
+        ]
+      }
+      submenus: {
+        Row: {
+          icon: string | null
+          menu_id: string | null
+          menu_path: string | null
+          slug: string
+          submenu_id: string
+          title: string
+        }
+        Insert: {
+          icon?: string | null
+          menu_id?: string | null
+          menu_path?: string | null
+          slug: string
+          submenu_id?: string
+          title: string
+        }
+        Update: {
+          icon?: string | null
+          menu_id?: string | null
+          menu_path?: string | null
+          slug?: string
+          submenu_id?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "submenu_menu_id_fkey"
+            columns: ["menu_id"]
+            referencedRelation: "menus"
+            referencedColumns: ["menu_id"]
           }
         ]
       }
