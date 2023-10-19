@@ -1,6 +1,6 @@
 name: Release
 
-on: 
+on:
   pull_request:
     types:
       - closed
@@ -24,7 +24,7 @@ jobs:
         with:
           version: latest
 
-      - run: | 
-          supabase link --project-ref $SUPABASE_PROJECT_ID
+      - run: |
+          supabase link --project-ref $SUPABASE_PROJECT_ID -p $SUPABASE_DB_PASSWORD
           supabase db push
           supabase functions deploy personalities
